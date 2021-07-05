@@ -38,4 +38,14 @@ jobs:
           tags: |
             judsonra/rotten-potatoes:latest
             judsonra/rotten-potatoes:${{ github.run_number }}
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1.1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.DIGITALOCEAN_KUBE_CONFIG }}
+      
 
